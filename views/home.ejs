@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+   
+    <title>ToDo</title>
+</head>
+<body>
+    <h1>TODO APP</h1>
+    <div>
+        <form action="/create-todo" method="POST">
+            <ul>
+             <li> 
+                 <label for="description">DESCRIPTION</label><br>
+                 <input type="text" id="desciption" name="description" placeholder="What do you need to do" required>
+             </li>
+             <li>
+                <label for="category">CATEGORY</label><br>
+                <select name="category" id="category">
+                  <optgroup  label="Choose a category">
+                    <option value="volvo">Work</option>
+                    <option value="saab">Personal</option>
+                    <option value="volvo">School</option>
+                    <option value="saab">Cleaning</option>
+                    <option value="volvo">Other</option>
+                    
+                  </optgroup>
+                 
+                </select>
+                <label for="date">Due Date</label><br>
+
+                <input type="date" id="date" name="dueDate">
+
+             </li><br><br>
+
+
+
+            </ul>
+            <button type="submit">Add Tasks</button>
+             
+
+
+        </form>
+        
+    </div>
+
+</body>
+</html>
