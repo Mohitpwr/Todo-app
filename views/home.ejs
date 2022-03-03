@@ -4,17 +4,20 @@
     <meta charset="UTF-8">
    
     <title>ToDo</title>
+    <script src="https://kit.fontawesome.com/f1e1679b19.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/home.css" >
 </head>
 <body>
+  <section class="main-container">
     <h1>TODO APP</h1>
     <div>
         <form action="/create-todo" method="POST">
-            <ul>
-             <li> 
+            
+             <p> 
                  <label for="description">DESCRIPTION</label><br>
                  <input type="text" id="desciption" name="description" placeholder="What do you need to do" required>
-             </li>
-             <li>
+             </p>
+             
                 <label for="category">CATEGORY</label><br>
                 <select name="category" id="category">
                   <optgroup  label="Choose a category">
@@ -31,29 +34,41 @@
 
                 <input type="date" id="date" name="dueDate">
 
-             </li><br><br>
+             <br><br>
 
 
 
-            </ul>
-            <button type="submit">Add Tasks</button>
+            
+            <button type="submit"> <i class="fa-solid fa-plus"></i>Add Tasks</button>
              
 
 
         </form>
-        <button>Delete</button>
+        <button type="submit" form="delete-todo"><i class="fa-solid fa-trash-can"></i>Delete</button>
     </div>
    
     <div class="card">
- 
-        <div class="container">
-          <h4><b>John Doe study for 8h per day</b></h4> 
-          <p>Architect & Engineer</p>
-           
-        </div>
-        <p>09/00/23</p>
+         <form action="/delete-todo" method="POST" id="delete-todo">
+          <div class="container">
+            <% for(let i of Todo){%>
+                <input type="checkbox" name="id" value="<%=i.id%>">
+
+                <h4><%=i.description%></h4> 
+                <p><%=i.category%></p>
+                 
+              </div>
+              <p> <i class="fa-solid fa-calendar-days"></i><%=i.dueDate %></p>
+            <%} 
+            %>
+          
        
       </div>
+
+         </form>
+        
+
+  </section>
+    
 
           
        
