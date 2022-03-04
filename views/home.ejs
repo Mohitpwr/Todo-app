@@ -4,60 +4,90 @@
     <meta charset="UTF-8">
    
     <title>ToDo</title>
-    <script src="https://kit.fontawesome.com/f1e1679b19.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+   
     <link rel="stylesheet" href="/home.css" >
 </head>
 <body>
   <section class="main-container">
     <h1>TODO APP</h1>
-    <div>
-        <form action="/create-todo" method="POST">
+    
+     <!-- form for creation of todo task -->
+      <form action="/create-todo" method="POST">
             
-             <p> 
-                 <label for="description">DESCRIPTION</label><br>
-                 <input type="text" id="desciption" name="description" placeholder="What do you need to do" required>
-             </p>
-             
+            <div class="description-div">
+              <label for="description">DESCRIPTION</label><br>
+              <input type="text" id="description-input" name="description" placeholder="What do you need to do" required>
+            </div>
+             <!-- div for category and date -->
+             <div class="data-div">
+               <div class="category-div" >
                 <label for="category">CATEGORY</label><br>
-                <select name="category" id="category">
-                  <optgroup  label="Choose a category">
-                    <option >Work</option>
-                    <option >Personal</option>
-                    <option >School</option>
-                    <option >Cleaning</option>
-                    <option>Other</option>
-                    
-                  </optgroup>
-                 
-                </select>
+              <select name="category" id="category">
+                <optgroup  label="Choose a category">
+                  <option value="n/a"> Choose a category </option>
+                  <option >Work</option>
+                  <option >Personal</option>
+                  <option >School</option>
+                  <option >Cleaning</option>
+                  <option>Other</option>
+                  
+                </optgroup>
+               
+              </select>
+               </div>
+              <div class="date-div">
                 <label for="date">Due Date</label><br>
 
-                <input type="date" id="date" name="dueDate">
+              <input type="date" id="date" name="dueDate">
+              </div>
+              
+             </div>
+             
+                
 
              <br><br>
+                <!-- Contains Action Buttons (i.e: Add and Delete ) -->
+            <div id="action-buttons">
 
+              <!-- button to add a new task and sumbit form -->
+              <button id="add-button" type="submit"> 
+                  <i class="fas fa-plus"></i>
+                  <span>Add Task</span> 
+              </button>
 
-
+              <!-- button to delete all the selected tasks in form with id='delete-do' -->
+              <button id="delete-button" type="submit" form="delete-todo">
+                  <i class="fas fa-trash-alt"></i>
+                  <span>Delete Tasks</span>
+              </button>
+          </div>
+            </form>
             
-            <button type="submit"> <i class="fa-solid fa-plus"></i>Add Tasks</button>
-             
-
-
-        </form>
-        <button type="submit" form="delete-todo"><i class="fa-solid fa-trash-can"></i>Delete</button>
+           
     </div>
-   
+                <!-- display our todo tasks -->
     <div class="card">
          <form action="/delete-todo" method="POST" id="delete-todo">
-          <div class="container">
+          
             <% for(let i of Todo){%>
-                <input type="checkbox" name="id" value="<%=i.id%>">
-
-                <h4><%=i.description%></h4> 
-                <p><%=i.category%></p>
+              <div class="container">
+                 <div>
+                    <input  type="checkbox" name="id" value="<%=i.id%>">
+                    <h4 class="h4-des" ><%=i.description%></h4>
+                    <div class="idate">
+                      <i class="fas fa-calendar-alt"></i>
+                      <span> <%= i.dueDate %> </span>
+                    </div>
+                    
+                  </div>
+                    
+                  <!-- background color for different category -->
+                  <button id="cat-button" type="button" style="background-color: <%= colorList[i.category] %>;"> <%= i.category %> </button>
+               
                  
               </div>
-              <p> <i class="fa-solid fa-calendar-days"></i><%=i.dueDate %></p>
+            
             <%} 
             %>
           
@@ -66,7 +96,7 @@
 
          </form>
         
-
+           
   </section>
     
 
